@@ -22,11 +22,11 @@ public class LikesController {
     private MapStructMapper mapper = new MapStructMapperImpl();
 
     @PostMapping
-    public ResponseEntity<Like> addLike(LikeDto likeDto) {
+    public ResponseEntity<String> addLike(LikeDto likeDto) {
         Like like = mapper.map(likeDto);
         like.getUser().setId(likeDto.getUserId());
         like.getPost().setId(likeDto.getPostId());
         likesRepository.save(like);
-        return new ResponseEntity<>(like, HttpStatus.CREATED);
+        return new ResponseEntity<>("Post liked successfully", HttpStatus.CREATED);
     }
 }
