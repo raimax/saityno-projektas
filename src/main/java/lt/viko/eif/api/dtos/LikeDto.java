@@ -9,15 +9,11 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class LikeDto {
-    @NotNull
-    @JsonProperty("id")
-    private Integer id;
-
-    @NotNull
+    @NotNull(message = "User id is not provided")
     @JsonProperty("userId")
     private Integer userId;
 
-    @NotNull
+    @NotNull(message = "Post id is not provided")
     @JsonProperty("postId")
     private Integer postId;
 }
