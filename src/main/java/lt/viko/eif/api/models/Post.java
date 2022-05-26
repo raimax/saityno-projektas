@@ -22,15 +22,15 @@ public class Post {
     public Post() {
     }
     
-    @ManyToOne(optional = false, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "user_id",  nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user = new User();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
+    private List<Comment> comments;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Like> likes = new ArrayList<>();
+    private List<Like> likes;
 }
