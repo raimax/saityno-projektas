@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -33,6 +34,17 @@ public class PostsController {
     public ResponseEntity<List<Post>> getPosts() {
         List<Post> posts = (List<Post>) postRepository.findAll();
         return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<?> getPost(@PathVariable Integer id) {
+        try {
+            Post post = postRepository.findById(id).orElseThrow();
+            return new ResponseEntity<>(post, HttpStatus.OK);
+        }
+        catch (NoSuchElementException e) {
+            return new ResponseEntity<>("Post not found", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping
