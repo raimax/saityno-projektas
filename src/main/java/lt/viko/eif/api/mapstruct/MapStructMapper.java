@@ -8,5 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface MapStructMapper {
     @Mapping(target = "image", ignore = true)
+    @Mapping(target = "user", ignore = true)
     Post map(PostDto postDto);
 }
