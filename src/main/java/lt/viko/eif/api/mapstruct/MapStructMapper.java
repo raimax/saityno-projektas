@@ -1,11 +1,13 @@
 package lt.viko.eif.api.mapstruct;
 
-import lt.viko.eif.api.dtos.LikeDto;
-import lt.viko.eif.api.models.Like;
+import lt.viko.eif.api.dtos.PostDto;
+import lt.viko.eif.api.models.Post;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface MapStructMapper {
-    Like map(LikeDto likeDto);
-    LikeDto map(Like like);
+    @Mapping(target = "image", ignore = true)
+    @Mapping(target = "user", ignore = true)
+    Post map(PostDto postDto);
 }

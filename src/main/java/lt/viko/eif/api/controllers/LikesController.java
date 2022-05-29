@@ -19,11 +19,9 @@ public class LikesController {
     @Autowired
     private LikesRepository likesRepository;
 
-    private MapStructMapper mapper = new MapStructMapperImpl();
-
     @PostMapping
     public ResponseEntity<String> addLike(LikeDto likeDto) {
-        Like like = mapper.map(likeDto);
+        Like like = new Like();
         like.getUser().setId(likeDto.getUserId());
         like.getPost().setId(likeDto.getPostId());
         likesRepository.save(like);
