@@ -57,7 +57,7 @@ public class PostsController {
             post.getUser().setId(postDto.getUserId());
             postRepository.save(post);
 
-            return new ResponseEntity<>("Post added successfully", HttpStatus.OK);
+            return new ResponseEntity<>(imageName, HttpStatus.OK);
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>("Error adding post", HttpStatus.INTERNAL_SERVER_ERROR);

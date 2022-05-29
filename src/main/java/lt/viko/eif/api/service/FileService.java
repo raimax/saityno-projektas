@@ -29,11 +29,12 @@ public class FileService implements IFileService {
         try (InputStream inputStream = multipartFile.getInputStream()) {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            return filePath.toAbsolutePath().toString();
         } catch (IOException ioe) {
             throw new IOException("Could not save image file: " + fileName, ioe);
         }
 
-        return fileName;
+        //return fileName;
     }
 
     private String generateUUID() {
