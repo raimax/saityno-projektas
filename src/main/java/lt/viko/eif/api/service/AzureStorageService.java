@@ -12,7 +12,7 @@ import java.util.UUID;
 @Component
 public class AzureStorageService {
     public String uploadFile(MultipartFile file) throws IOException {
-        String connectionString = "DefaultEndpointsProtocol=https;AccountName=saitynasimages;AccountKey=CjXeH6x3uwmZUV0IUafdsQdgpOrFgzEQNoPJ1ddxd3D/azqFWFGv2nJz3ZOyAM9gJ85p1N7tB3PO+ASt45PxdQ==;EndpointSuffix=core.windows.net";
+        String connectionString = System.getenv("AzureStorageConnectionString");
         String fileName = generateUUID();
         String fileExtension = getFileExtension(file.getOriginalFilename());
         String fullFileName = fileName + fileExtension;
