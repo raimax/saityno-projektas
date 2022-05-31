@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class PostsController {
             postRepository.save(post);
 
             return new ResponseEntity<>("Post added successfully", HttpStatus.OK);
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>("Error adding post", HttpStatus.INTERNAL_SERVER_ERROR);
         }
