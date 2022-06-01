@@ -5,6 +5,7 @@ import lt.viko.eif.api.mapstruct.MapStructMapper;
 import lt.viko.eif.api.models.Post;
 import lt.viko.eif.api.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -35,6 +36,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Cacheable(value = "posts")
     public List<Post> getAll() {
         return (List<Post>) postRepository.findAll();
     }
@@ -42,9 +44,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public void add(PostDto postDto) throws IOException {
         Post post = mapper.map(postDto);
-        String imageName = storageService.uploadFile(postDto.getImageFile());
-        imageOptimizationService.optimizeImage(imageName);
-        post.setImage(imageName);
+        String imageName = storageService.uploadFile(postDto.getImageFile(), AzureStorageService.Container.unoptimized);
+        String newImageName = imageOptimizationService.optimizeImage(imageName);
+        post.setImage(newImageName);
         post.getUser().setId(postDto.getUserId());
         postRepository.save(post);
     }
