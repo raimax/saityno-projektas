@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Component
 public class AzureStorageService {
-    public String uploadFile(MultipartFile file) throws IOException, NotFoundException {
+    public String uploadFile(MultipartFile file, Container container) throws IOException, NotFoundException {
         String connectionString = System.getenv("AzureStorageConnectionString");
 
         if (connectionString == null) throw new NotFoundException("Environmental variable AzureStorageConnectionString not found");
@@ -23,7 +23,7 @@ public class AzureStorageService {
 
         BlobContainerClient containerClient = new BlobContainerClientBuilder()
                 .connectionString(connectionString)
-                .containerName("unoptimized")
+                .containerName(container.name())
                 .buildClient();
 
         BlobClient blobClient = containerClient.getBlobClient(fullFileName);
@@ -36,7 +36,12 @@ public class AzureStorageService {
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
-    private String getFileExtension(String fileName) {
+    public static String getFileExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf('.'));
+    }
+
+    public enum Container {
+        unoptimized,
+        optimized
     }
 }
