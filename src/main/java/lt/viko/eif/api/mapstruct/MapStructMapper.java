@@ -4,7 +4,9 @@ import lt.viko.eif.api.dtos.PostDto;
 import lt.viko.eif.api.models.Post;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
+@Component
 @Mapper(componentModel = "spring")
 public interface MapStructMapper {
     @Mapping(target = "image", ignore = true)
