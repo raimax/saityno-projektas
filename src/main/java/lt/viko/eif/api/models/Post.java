@@ -17,7 +17,7 @@ public class Post {
     private Integer id;
     private String title;
     private String image;
-    private Integer views;
+    private Integer views = 0;
 
     public Post() {
     }
