@@ -22,7 +22,7 @@ public class Post {
     public Post() {
     }
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user = new User();
 
