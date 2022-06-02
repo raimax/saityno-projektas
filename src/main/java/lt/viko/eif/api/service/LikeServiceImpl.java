@@ -21,9 +21,7 @@ public class LikeServiceImpl implements LikeService {
 
     public boolean userLikedAlready(Integer userId, Integer postId) {
         Like like = likesRepository.findByUserIdAndPostId(userId, postId);
-        if (like == null) return false;
-
-        return true;
+        return like != null;
     }
 
     @Override
