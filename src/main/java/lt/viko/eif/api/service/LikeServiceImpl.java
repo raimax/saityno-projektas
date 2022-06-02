@@ -4,6 +4,7 @@ import lt.viko.eif.api.dtos.LikeDto;
 import lt.viko.eif.api.models.Like;
 import lt.viko.eif.api.repositories.LikesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +13,7 @@ public class LikeServiceImpl implements LikeService {
     private LikesRepository likesRepository;
 
     @Override
+    @CacheEvict(value = "posts", allEntries = true)
     public void add(LikeDto likeDto) {
         Like like = new Like();
         like.getUser().setId(likeDto.getUserId());
@@ -25,6 +27,7 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
+    @CacheEvict(value = "posts", allEntries = true)
     public void remove(LikeDto likeDto) {
         Like like = new Like();
         like.getUser().setId(likeDto.getUserId());
