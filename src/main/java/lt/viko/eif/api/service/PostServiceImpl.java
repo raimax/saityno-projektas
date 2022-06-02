@@ -5,6 +5,7 @@ import lt.viko.eif.api.mapstruct.MapStructMapper;
 import lt.viko.eif.api.models.Post;
 import lt.viko.eif.api.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @CacheEvict(value = "posts", allEntries = true)
     public void add(PostDto postDto) throws IOException {
         Post post = mapper.map(postDto);
         String imageName = storageService.uploadFile(postDto.getImageFile(), AzureStorageService.Container.unoptimized);
