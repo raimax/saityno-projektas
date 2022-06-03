@@ -54,4 +54,12 @@ public class PostServiceImpl implements PostService {
         post.getUser().setId(postDto.getUserId());
         postRepository.save(post);
     }
+
+    @Override
+    public Post getRandom() {
+        Post randomPost = postRepository.getRandom();
+        randomPost.setViews(randomPost.getViews() + 1);
+        postRepository.save(randomPost);
+        return randomPost;
+    }
 }
