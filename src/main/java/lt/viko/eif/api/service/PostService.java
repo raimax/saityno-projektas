@@ -11,4 +11,5 @@ public interface PostService {
     List<Post> getAll();
     void add(PostDto post) throws IOException;
     Post getRandom();
+    List<Post> getTopByViews();
 }

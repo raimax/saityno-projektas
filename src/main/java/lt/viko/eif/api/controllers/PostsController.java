@@ -56,4 +56,9 @@ public class PostsController {
     public ResponseEntity<Post> getRandomPost() {
         return new ResponseEntity<>(postService.getRandom(), HttpStatus.OK);
     }
+
+    @GetMapping("/top/views")
+    public ResponseEntity<List<Post>> getPostsWithMostViews() {
+        return new ResponseEntity<>(postService.getTopByViews(), HttpStatus.OK);
+    }
 }

@@ -62,4 +62,9 @@ public class PostServiceImpl implements PostService {
         postRepository.save(randomPost);
         return randomPost;
     }
+
+    @Override
+    public List<Post> getTopByViews() {
+        return postRepository.findTop3ByOrderByViewsDesc();
+    }
 }
