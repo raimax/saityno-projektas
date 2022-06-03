@@ -10,4 +10,5 @@ public interface PostRepository extends CrudRepository<Post, Integer> {
     @Query(value = "SELECT * FROM post ORDER BY rand() LIMIT 1", nativeQuery = true)
     Post getRandom();
     List<Post> findTop3ByOrderByViewsDesc();
+    List<Post> findTop3ByOrderByLikesDesc();
 }

@@ -61,4 +61,9 @@ public class PostsController {
     public ResponseEntity<List<Post>> getPostsWithMostViews() {
         return new ResponseEntity<>(postService.getTopByViews(), HttpStatus.OK);
     }
+
+    @GetMapping("/top/likes")
+    public ResponseEntity<List<Post>> getPostsWithMostLikes() {
+        return new ResponseEntity<>(postService.getTopByLikes(), HttpStatus.OK);
+    }
 }

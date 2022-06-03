@@ -67,4 +67,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> getTopByViews() {
         return postRepository.findTop3ByOrderByViewsDesc();
     }
+
+    @Override
+    public List<Post> getTopByLikes() {
+        return postRepository.findTop3ByOrderByLikesDesc();
+    }
 }
