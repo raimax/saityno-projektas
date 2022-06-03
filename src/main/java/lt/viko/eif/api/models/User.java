@@ -1,5 +1,6 @@
 package lt.viko.eif.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     private String username;
+    @JsonIgnore
     @Column(name = "password_hash")
     private String passwordHash;
 }
