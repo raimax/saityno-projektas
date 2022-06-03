@@ -33,7 +33,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post getById(Integer id) throws NoSuchElementException {
-        return postRepository.findById(id).orElseThrow();
+        Post post = postRepository.findById(id).orElseThrow();
+        post.setViews(post.getViews() + 1);
+        return postRepository.save(post);
     }
 
     @Override
