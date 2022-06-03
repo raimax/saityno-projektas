@@ -26,11 +26,11 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user = new User();
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "post-comments")
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "post-likes")
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Like> likes;
 }
