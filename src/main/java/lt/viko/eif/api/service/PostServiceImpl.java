@@ -1,5 +1,6 @@
 package lt.viko.eif.api.service;
 
+import lt.viko.eif.api.controllers.PostsController;
 import lt.viko.eif.api.dtos.PostDto;
 import lt.viko.eif.api.mapstruct.MapStructMapper;
 import lt.viko.eif.api.models.Post;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,7 +44,11 @@ public class PostServiceImpl implements PostService {
     @Override
     @Cacheable(value = "posts")
     public List<Post> getAll() {
-        return (List<Post>) postRepository.findAll();
+        List<Post> posts = (List<Post>) postRepository.findAll();
+        for (Post post : posts) {
+            post.add(linkTo(methodOn(PostsController.class).getPost(post.getId())).withSelfRel());
+        }
+        return posts;
     }
 
     @Override
