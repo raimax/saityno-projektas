@@ -51,4 +51,9 @@ public class PostsController {
             return new ResponseEntity<>("Error adding post", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/random")
+    public ResponseEntity<Post> getRandomPost() {
+        return new ResponseEntity<>(postService.getRandom(), HttpStatus.OK);
+    }
 }
