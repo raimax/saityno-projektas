@@ -3,6 +3,7 @@ package lt.viko.eif.api.models;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Post {
+public class Post extends RepresentationModel<Post> {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
