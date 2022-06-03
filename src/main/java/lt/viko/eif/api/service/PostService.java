@@ -10,4 +10,5 @@ public interface PostService {
     Post getById(Integer id);
     List<Post> getAll();
     void add(PostDto post) throws IOException;
+    Post getRandom();
 }
