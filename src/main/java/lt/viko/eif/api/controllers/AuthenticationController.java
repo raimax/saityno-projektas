@@ -49,7 +49,7 @@ public class AuthenticationController {
                 loginDto.getUsername(), loginDto.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
+        return new ResponseEntity<>(authentication.getName(), HttpStatus.OK);
     }
 
 
