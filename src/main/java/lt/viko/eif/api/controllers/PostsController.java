@@ -2,12 +2,13 @@ package lt.viko.eif.api.controllers;
 
 
 import lt.viko.eif.api.dtos.PostDto;
-import lt.viko.eif.api.mapstruct.MapStructMapper;
 import lt.viko.eif.api.models.Post;
 import lt.viko.eif.api.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/posts")
 @Validated
+@PreAuthorize("isAuthenticated()")
 public class PostsController {
     private final PostService postService;
 
@@ -24,6 +26,7 @@ public class PostsController {
     public PostsController(PostService postService) {
         this.postService = postService;
     }
+
 
     @GetMapping
     public ResponseEntity<List<Post>> getPosts() {
@@ -41,6 +44,7 @@ public class PostsController {
         }
     }
 
+    @Secured({"USER" , "ADMIN"})
     @PostMapping
     public ResponseEntity<String> addPost(@Valid @ModelAttribute PostDto postDto) {
         try {
