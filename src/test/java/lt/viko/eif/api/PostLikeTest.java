@@ -1,17 +1,11 @@
 package lt.viko.eif.api;
 
-import com.squareup.okhttp.Response;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lt.viko.eif.api.dtos.LikeDto;
-import lt.viko.eif.api.service.HttpTestService;
 import org.junit.Assert;
 
-public class PostLikeTest {
-    private Response response;
-    private final String API_URL = "http://localhost:8080/api";
-    private HttpTestService httpTestService = new HttpTestService();
-
+public class PostLikeTest extends AppTest {
     @When("The user sends POST request to the likes endpoint")
     public void theUserSendsGetRequestToTheEndpoint() {
         LikeDto likeDto = new LikeDto();
