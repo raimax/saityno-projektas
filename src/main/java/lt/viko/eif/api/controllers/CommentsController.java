@@ -30,7 +30,6 @@ public class CommentsController {
         this.mapper = mapper;
     }
 
-    @Secured({"USER" , "ADMIN"})
     @PostMapping
     public ResponseEntity<String> addComment(@RequestBody @Valid CommentDto commentDto) {
         Comment comment = mapper.map(commentDto);
