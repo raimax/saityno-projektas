@@ -1,8 +1,13 @@
 package lt.viko.eif.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lt.viko.eif.api.models.Post;
 import org.junit.Assert;
+
+import java.io.IOException;
 
 public class GetPostsTest extends AppTest {
     @When("The user sends GET request to the posts endpoint")
@@ -15,10 +20,11 @@ public class GetPostsTest extends AppTest {
         Assert.assertEquals(200, response.code());
     }
 
-    /*@Then("The Response contains a list of users")
+    @Then("The Response contains a list of posts")
     public void theResponseContainsAListOfUsers() throws IOException {
-        Gson g = new Gson();
-        User[] users = g.fromJson(response.body().string(), User[].class);
-        Assert.assertTrue(users.length > 0);
-    }*/
+        ObjectMapper mapper = JsonMapper.builder().findAndAddModules().build();
+        Post[] posts = mapper.readValue(response.body().string(), Post[].class);
+
+        Assert.assertTrue(posts.length > 0);
+    }
 }
