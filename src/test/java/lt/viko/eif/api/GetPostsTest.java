@@ -12,7 +12,7 @@ import java.io.IOException;
 public class GetPostsTest extends AppTest {
     @When("The user sends GET request to the posts endpoint")
     public void theUserSendsGetRequestToThePostsEndpoint() {
-        response = httpTestService.get(API_URL + "/posts");
+        response = httpTestService.get(API_URL + "/posts/");
     }
 
     @Then("The HTTP status of posts is OK")
@@ -21,7 +21,7 @@ public class GetPostsTest extends AppTest {
     }
 
     @Then("The Response contains a list of posts")
-    public void theResponseContainsAListOfUsers() throws IOException {
+    public void theResponseContainsAListOfPosts() throws IOException {
         ObjectMapper mapper = JsonMapper.builder().findAndAddModules().build();
         Post[] posts = mapper.readValue(response.body().string(), Post[].class);
 
