@@ -12,11 +12,7 @@ import org.junit.Assert;
 
 import java.io.IOException;
 
-public class GetUsersTest {
-    private Response response;
-    private final String API_URL = "http://localhost:8080/api";
-    private HttpTestService httpTestService = new HttpTestService();
-
+public class GetUsersTest extends AppTest {
     @When("The user sends GET request to the endpoint")
     public void theUserSendsGetRequestToTheEndpoint() {
         response = httpTestService.get(API_URL + "/users");

@@ -1,16 +1,10 @@
 package lt.viko.eif.api;
 
-import com.squareup.okhttp.Response;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lt.viko.eif.api.service.HttpTestService;
 import org.junit.Assert;
 
-public class GetPostsTest {
-    private Response response;
-    private final String API_URL = "http://localhost:8080/api";
-    private HttpTestService httpTestService = new HttpTestService();
-
+public class GetPostsTest extends AppTest {
     @When("The user sends GET request to the posts endpoint")
     public void theUserSendsGetRequestToThePostsEndpoint() {
         response = httpTestService.get(API_URL + "/posts");
