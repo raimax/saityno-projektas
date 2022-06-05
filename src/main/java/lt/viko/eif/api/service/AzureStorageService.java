@@ -32,7 +32,7 @@ public class AzureStorageService {
         return fullFileName;
     }
 
-    private String generateUUID() {
+    public static String generateUUID() {
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
