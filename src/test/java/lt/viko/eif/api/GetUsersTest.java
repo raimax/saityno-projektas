@@ -13,12 +13,12 @@ import org.junit.Assert;
 import java.io.IOException;
 
 public class GetUsersTest extends AppTest {
-    @When("The user sends GET request to the endpoint")
+    @When("The user sends GET request to the users endpoint")
     public void theUserSendsGetRequestToTheEndpoint() {
         response = httpTestService.get(API_URL + "/users");
     }
 
-    @Then("The HTTP status is OK")
+    @Then("The HTTP status of get users OK")
     public void theHTTPStatusIsOk() {
         Assert.assertEquals(200, response.code());
     }
