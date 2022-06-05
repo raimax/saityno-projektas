@@ -2,8 +2,6 @@ package lt.viko.eif.api.service;
 
 import com.google.gson.Gson;
 import com.squareup.okhttp.*;
-import lt.viko.eif.api.models.ReshmushResponse;
-import lt.viko.eif.api.service.HttpService;
 
 import java.io.IOException;
 
