@@ -1,9 +1,7 @@
 package lt.viko.eif.api.service;
 
 import com.google.gson.Gson;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+import com.squareup.okhttp.*;
 import lt.viko.eif.api.models.ReshmushResponse;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +22,10 @@ public class HttpServiceImpl implements HttpService<ReshmushResponse> {
             System.out.println("Unsuccessful endpoint call " + e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public ReshmushResponse post(String url, Object data) {
+        return null;
     }
 }
