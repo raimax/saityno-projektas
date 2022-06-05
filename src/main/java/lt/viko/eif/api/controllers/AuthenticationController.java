@@ -30,50 +30,38 @@ import java.util.Collections;
 @Validated
 public class AuthenticationController {
 
-
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private RoleRepository roleRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/signin")
-    public ResponseEntity<String> authenticateUser(@RequestBody @Valid LoginDto loginDto){
+    public ResponseEntity<User> authenticateUser(@RequestBody @Valid LoginDto loginDto){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsername(), loginDto.getPassword()));
 
+        User loggedUser = userRepository.findByUsername(authentication.getName()).get();
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<>(authentication.getName(), HttpStatus.OK);
+        return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
 
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody @Valid SignUpDto signUpDto){
-
-        // add check for username exists in a DB
-
-
-        //TODO cia praso grazinit bulean bet reikia pakeisti funkcija userRepository
         if(userRepository.existsByUsername(signUpDto.getUsername())){
             return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
         }
 
-        // create user object
-
-        //TODO useris neveikia kazkodel + user.setRoles
         User user = new User();
         user.setUsername(signUpDto.getUsername());
         user.setPasswordHash(passwordEncoder.encode(signUpDto.getPassword()));
 
-
-        //rolerepository reikia
-        Role roles = roleRepository.findByName("USER").get();
+        Role roles = roleRepository.findByName("ROLE_USER").get();
         user.setRoles(Collections.singleton(roles));
 
         userRepository.save(user);
