@@ -8,6 +8,9 @@ import org.springframework.hateoas.RepresentationModel;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Post model class
+ */
 @Getter
 @Setter
 @Entity

@@ -7,6 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * This class is used to pass data to a request for creating a Post object
+ */
 @Getter
 @Setter
 public class PostDto {

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+ * This class is an endpoint for adding likes
+ */
 @RestController
 @RequestMapping("/api/likes")
 @Validated
@@ -21,6 +24,12 @@ public class LikesController {
     @Autowired
     private LikeService likeService;
 
+    /**
+     * This method adds a like
+     *
+     * @param likeDto data transfer object of the like parameter
+     * @return response message with status
+     */
     @PostMapping
     public ResponseEntity<String> addLike(@RequestBody @Valid LikeDto likeDto) {
         if (!likeService.userLikedAlready(likeDto.getUserId(), likeDto.getPostId())) {

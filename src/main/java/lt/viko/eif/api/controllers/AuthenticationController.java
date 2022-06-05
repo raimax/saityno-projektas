@@ -24,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.Collections;
 
+/**
+ * This class is an endpoint for doing authentication operations with user
+ */
 @RestController
 
 @RequestMapping("/api/auth")
@@ -39,6 +42,12 @@ public class AuthenticationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * This method lets user to sign in
+     *
+     * @param loginDto data transfer object of the login parameters
+     * @return response message with status
+     */
     @PostMapping("/signin")
     public ResponseEntity<User> authenticateUser(@RequestBody @Valid LoginDto loginDto){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -50,7 +59,12 @@ public class AuthenticationController {
         return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
 
-
+    /**
+     * This method lets user to register
+     *
+     * @param signUpDto data transfer object of the registration parameters
+     * @return response message with status
+     */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody @Valid SignUpDto signUpDto){
         if(userRepository.existsByUsername(signUpDto.getUsername())){

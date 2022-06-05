@@ -7,11 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class implements LikeService
+ */
 @Service
 public class LikeServiceImpl implements LikeService {
     @Autowired
     private LikesRepository likesRepository;
 
+    /**
+     * This method adds like to repository
+     *
+     * @param likeDto data transfer object of the like parameter
+     */
     @Override
     @CacheEvict(value = "posts", allEntries = true)
     public void add(LikeDto likeDto) {
@@ -21,11 +29,23 @@ public class LikeServiceImpl implements LikeService {
         likesRepository.save(like);
     }
 
+    /**
+     * This method checks if user already liked a post
+     *
+     * @param userId user ID
+     * @param postId post ID
+     * @return boolean
+     */
     public boolean userLikedAlready(Integer userId, Integer postId) {
         Like like = likesRepository.findByUserIdAndPostId(userId, postId);
         return like != null;
     }
 
+    /**
+     * This method removes like
+     *
+     * @param likeDto data transfer object of the like parameter
+     */
     @Override
     @CacheEvict(value = "posts", allEntries = true)
     public void remove(LikeDto likeDto) {

@@ -6,9 +6,11 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * This class is used to pass data to a request for creating a User object
+ */
 @Getter
 @Setter
-
 public class SignUpDto {
     @NotNull(message = "Username is required")
     @JsonProperty("username")

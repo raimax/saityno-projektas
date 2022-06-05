@@ -9,6 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * This class implements ImageOptimizationService
+ */
 @Service
 public class ImageOptimizationServiceImpl implements ImageOptimizationService{
     private final String reshmushUrl = "http://api.resmush.it/ws.php?img=";
@@ -17,12 +20,21 @@ public class ImageOptimizationServiceImpl implements ImageOptimizationService{
     private final HttpService<ReshmushResponse> httpService;
     private final AzureStorageService storageService;
 
+    /**
+     * Injects an instance of AzureStorageService and HttpService
+     */
     @Autowired
     public ImageOptimizationServiceImpl(HttpService<ReshmushResponse> httpService, AzureStorageService storageService) {
         this.httpService = httpService;
         this.storageService = storageService;
     }
 
+    /**
+     * This method optimizes image
+     *
+     * @param imageName name of the image
+     * @return status string
+     */
     @Override
     public String optimizeImage(String imageName) {
         ReshmushResponse response = httpService.get(reshmushUrl + storageUrl + imageName + imageQuality);

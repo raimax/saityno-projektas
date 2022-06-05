@@ -7,11 +7,17 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+/**
+ * This class implements HttpService
+ */
 @Service
 public class HttpServiceImpl implements HttpService<ReshmushResponse> {
     private OkHttpClient client = new OkHttpClient();
     private Gson gson = new Gson();
 
+    /**
+     * This method //todo
+     */
     @Override
     public ReshmushResponse get(String url) {
         try {

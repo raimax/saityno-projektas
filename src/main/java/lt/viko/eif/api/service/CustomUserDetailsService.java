@@ -14,6 +14,9 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * This class implements UserDetailService
+ */
 @Service
 public class CustomUserDetailsService  implements UserDetailsService {
     private UserRepository userRepository;
@@ -22,6 +25,13 @@ public class CustomUserDetailsService  implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * This method is used to find users by username
+     *
+     * @param username Username string
+     * @return username, passwordhash, role,
+     *                  if not found throws exception with text
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)

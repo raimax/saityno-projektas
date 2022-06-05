@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Like model class
+ */
 @Getter
 @Setter
 @Entity

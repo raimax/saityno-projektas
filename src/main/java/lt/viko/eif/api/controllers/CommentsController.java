@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+ * This class is an endpoint for accessing and adding comments
+ */
 @RestController
 @RequestMapping("/api/comments")
 @Validated
@@ -24,12 +27,23 @@ public class CommentsController {
     private CommentService commentService;
     private MapStructMapper mapper;
 
+    /**
+     * This method is user to //todo
+     *
+     * @param
+     */
     @Autowired
     public CommentsController(CommentService commentService, MapStructMapper mapper) {
         this.commentService = commentService;
         this.mapper = mapper;
     }
 
+    /**
+     * This method adds a comment
+     *
+     * @param commentDto data transfer object of the comment parameter
+     * @return response message with status
+     */
     @PostMapping
     public ResponseEntity<String> addComment(@RequestBody @Valid CommentDto commentDto) {
         Comment comment = mapper.map(commentDto);

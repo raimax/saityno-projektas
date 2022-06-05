@@ -21,6 +21,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+/**
+ * This class is used for configuring security
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
@@ -29,15 +32,22 @@ import java.util.Arrays;
 )
 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
     private CustomUserDetailsService userDetailsService;
-
+    /**
+     * This method is used to encode a password bean
+     *
+     * @return Encrypted password
+     */
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
+    /**
+     * This method is used for logging out from website and deleting cookies
+     *
+     * @param http //todo
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -55,12 +65,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
+    /**
+     * This method is used for password encoding
+     *
+     * @param auth //todo
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
 
+    /**
+     * This method is used to authenticate manager bean
+     *
+     * @return Authenticated manager bean
+     */
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {

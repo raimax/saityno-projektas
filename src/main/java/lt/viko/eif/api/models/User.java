@@ -8,6 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * User model class
+ */
 @Getter
 @Setter
 @Entity

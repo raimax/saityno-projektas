@@ -9,9 +9,19 @@ import org.webjars.NotFoundException;
 
 import java.io.IOException;
 import java.util.UUID;
-
+/**
+ * This class is used to implement Azure database for MySQL servers
+ */
 @Component
 public class AzureStorageService {
+
+    /**
+     * This method uploads a file
+     *
+     * @param file File of multiple parts
+     * @param container Container
+     * @return fullFileName full file name
+     */
     public String uploadFile(MultipartFile file, Container container) throws IOException, NotFoundException {
         String connectionString = System.getenv("AzureStorageConnectionString");
 
@@ -32,10 +42,16 @@ public class AzureStorageService {
         return fullFileName;
     }
 
+    /**
+     * This method is used to generate a UUID
+     */
     public static String generateUUID() {
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
+    /**
+     * This method is used to get file extension
+     */
     public static String getFileExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf('.'));
     }

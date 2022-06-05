@@ -7,6 +7,9 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * This class is used to pass data to a request for creating a User object
+ */
 @Getter
 @Setter
 public class LoginDto {

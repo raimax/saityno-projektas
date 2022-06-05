@@ -8,6 +8,9 @@ import lt.viko.eif.api.models.User;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * This class is used to pass data to a request for creating a Comment object
+ */
 @Getter
 @Setter
 public class CommentDto {

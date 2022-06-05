@@ -17,6 +17,9 @@ import java.util.NoSuchElementException;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+/**
+ * This class implements PostService
+ */
 @Service
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
@@ -24,6 +27,9 @@ public class PostServiceImpl implements PostService {
     private final MapStructMapper mapper;
     private final ImageOptimizationService imageOptimizationService;
 
+    /**
+     * //todo
+     */
     @Autowired
     public PostServiceImpl(PostRepository postRepository,
                            AzureStorageService storageService,
@@ -35,6 +41,11 @@ public class PostServiceImpl implements PostService {
         this.imageOptimizationService = imageOptimizationService;
     }
 
+    /**
+     * This method retrieves post by ID
+     *
+     * @param id post ID
+     */
     @Override
     public Post getById(Integer id) throws NoSuchElementException {
         Post post = postRepository.findById(id).orElseThrow();
@@ -42,6 +53,11 @@ public class PostServiceImpl implements PostService {
         return postRepository.save(post);
     }
 
+    /**
+     * This method retrieves all posts
+     *
+     * @return posts
+     */
     @Override
     @Cacheable(value = "posts")
     public List<Post> getAll() {
@@ -52,6 +68,11 @@ public class PostServiceImpl implements PostService {
         return posts;
     }
 
+    /**
+     * This method adds a post
+     *
+     * @param postDto data transfer object of the post parameter
+     */
     @Override
     @CacheEvict(value = "posts", allEntries = true)
     public void add(PostDto postDto) throws IOException {
@@ -63,6 +84,11 @@ public class PostServiceImpl implements PostService {
         postRepository.save(post);
     }
 
+    /**
+     * This method retrieves random posts
+     *
+     * @return random post
+     */
     @Override
     public Post getRandom() {
         Post randomPost = postRepository.getRandom();
@@ -71,11 +97,21 @@ public class PostServiceImpl implements PostService {
         return randomPost;
     }
 
+    /**
+     * This method retrieves top viewed posts
+     *
+     * @return top viewed posts
+     */
     @Override
     public List<Post> getTopByViews() {
         return postRepository.findTop3ByOrderByViewsDesc();
     }
 
+    /**
+     * This method retrieves top liked posts
+     *
+     * @return top liked posts
+     */
     @Override
     public List<Post> getTopByLikes() {
         return postRepository.findTop3ByOrderByLikesDesc();
