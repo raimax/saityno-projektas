@@ -7,24 +7,19 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lt.viko.eif.api.service.HttpTestService;
 import org.junit.Assert;
 
 import java.io.IOException;
 
 public class GetUsersTest {
-    private OkHttpClient client = new OkHttpClient();
     private Response response;
     private final String API_URL = "http://localhost:8080/api";
+    private HttpTestService httpTestService = new HttpTestService();
 
     @When("The user sends GET request to the endpoint")
     public void theUserSendsGetRequestToTheEndpoint() {
-        try {
-            Request request = new Request.Builder().url(API_URL + "/users").get().build();
-
-            this.response = client.newCall(request).execute();
-        } catch (IOException e) {
-            System.out.println("Unsuccessful endpoint call " + e.getMessage());
-        }
+        response = httpTestService.get(API_URL + "/users");
     }
 
     @Then("The HTTP status is OK")
