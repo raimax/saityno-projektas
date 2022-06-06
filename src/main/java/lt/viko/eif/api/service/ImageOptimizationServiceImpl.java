@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * This class implements ImageOptimizationService
+ * This class is used for reducing image size
  */
 @Service
 public class ImageOptimizationServiceImpl implements ImageOptimizationService{
@@ -20,9 +20,6 @@ public class ImageOptimizationServiceImpl implements ImageOptimizationService{
     private final HttpService<ReshmushResponse> httpService;
     private final AzureStorageService storageService;
 
-    /**
-     * Injects an instance of AzureStorageService and HttpService
-     */
     @Autowired
     public ImageOptimizationServiceImpl(HttpService<ReshmushResponse> httpService, AzureStorageService storageService) {
         this.httpService = httpService;
@@ -30,10 +27,11 @@ public class ImageOptimizationServiceImpl implements ImageOptimizationService{
     }
 
     /**
-     * This method optimizes image
+     * This method sends an image to reshmush api for optimization
+     * and then uploads in to azure storage container
      *
      * @param imageName name of the image
-     * @return status string
+     * @return file name of optimized image
      */
     @Override
     public String optimizeImage(String imageName) {

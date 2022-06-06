@@ -28,7 +28,6 @@ import java.util.Collections;
  * This class is an endpoint for doing authentication operations with user
  */
 @RestController
-
 @RequestMapping("/api/auth")
 @Validated
 public class AuthenticationController {

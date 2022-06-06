@@ -3,8 +3,9 @@ package lt.viko.eif.api.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 /**
- * This class configures front-end
+ * This class configures global cors
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

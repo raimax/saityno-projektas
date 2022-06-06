@@ -10,7 +10,7 @@ import org.webjars.NotFoundException;
 import java.io.IOException;
 import java.util.UUID;
 /**
- * This class is used to implement Azure database for MySQL servers
+ * This class is used for uploading images to azure storage container
  */
 @Component
 public class AzureStorageService {
@@ -18,9 +18,9 @@ public class AzureStorageService {
     /**
      * This method uploads a file
      *
-     * @param file File of multiple parts
-     * @param container Container
-     * @return fullFileName full file name
+     * @param file Multipart file
+     * @param container Storage container
+     * @return file name of uploaded file
      */
     public String uploadFile(MultipartFile file, Container container) throws IOException, NotFoundException {
         String connectionString = System.getenv("AzureStorageConnectionString");

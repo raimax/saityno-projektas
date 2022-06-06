@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * This class implements CommentService
+ * This class manages comments
  */
 @Service
 public class CommentServiceImpl implements CommentService {

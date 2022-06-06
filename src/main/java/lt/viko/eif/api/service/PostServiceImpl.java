@@ -18,7 +18,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 /**
- * This class implements PostService
+ * This class manages posts
  */
 @Service
 public class PostServiceImpl implements PostService {
@@ -27,9 +27,6 @@ public class PostServiceImpl implements PostService {
     private final MapStructMapper mapper;
     private final ImageOptimizationService imageOptimizationService;
 
-    /**
-     * //todo
-     */
     @Autowired
     public PostServiceImpl(PostRepository postRepository,
                            AzureStorageService storageService,
@@ -56,7 +53,7 @@ public class PostServiceImpl implements PostService {
     /**
      * This method retrieves all posts
      *
-     * @return posts
+     * @return a list of posts
      */
     @Override
     @Cacheable(value = "posts")
@@ -85,7 +82,7 @@ public class PostServiceImpl implements PostService {
     }
 
     /**
-     * This method retrieves random posts
+     * This method retrieves a random post
      *
      * @return random post
      */

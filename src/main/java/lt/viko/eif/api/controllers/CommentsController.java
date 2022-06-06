@@ -27,11 +27,6 @@ public class CommentsController {
     private CommentService commentService;
     private MapStructMapper mapper;
 
-    /**
-     * This method is user to //todo
-     *
-     * @param
-     */
     @Autowired
     public CommentsController(CommentService commentService, MapStructMapper mapper) {
         this.commentService = commentService;

@@ -44,9 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
     /**
-     * This method is used for logging out from website and deleting cookies
+     * This method is used for configuring security settings
      *
-     * @param http //todo
+     * @param //HttpSecurity
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {

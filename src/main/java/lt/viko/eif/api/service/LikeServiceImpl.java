@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 /**
- * This class implements LikeService
+ * This class manages likes
  */
 @Service
 public class LikeServiceImpl implements LikeService {
@@ -16,7 +16,7 @@ public class LikeServiceImpl implements LikeService {
     private LikesRepository likesRepository;
 
     /**
-     * This method adds like to repository
+     * This method saves a like
      *
      * @param likeDto data transfer object of the like parameter
      */
