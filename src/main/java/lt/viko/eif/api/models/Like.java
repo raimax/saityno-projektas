@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Like model class
+ */
 @Getter
 @Setter
 @Entity
@@ -16,7 +19,7 @@ public class Like {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @JsonBackReference
+    @JsonBackReference(value = "post-likes")
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post = new Post();

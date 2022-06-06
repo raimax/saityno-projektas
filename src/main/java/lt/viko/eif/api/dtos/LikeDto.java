@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * This class is used to pass data to a request for creating a Like object
+ */
 @Getter
 @Setter
 public class LikeDto {

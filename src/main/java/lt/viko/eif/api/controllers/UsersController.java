@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * This class is an endpoint for accessing users
+ */
 @RestController
 @RequestMapping("/api/users")
 public class UsersController {
@@ -18,6 +21,11 @@ public class UsersController {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * This method retrieves all users
+     *
+     * @return user list with status
+     */
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
         List<User> users = (List<User>) userRepository.findAll();
